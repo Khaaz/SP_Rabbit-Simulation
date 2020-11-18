@@ -85,6 +85,30 @@
 		<Unit filename="C:/Etudes/isima/a2s1/Simu/SP_Rabbit-Simulation/main.cpp">
 			<Option target="SP_Rabbit_Simulation"/>
 		</Unit>
+		<Unit filename="C:/Etudes/isima/a2s1/Simu/SP_Rabbit-Simulation/src/FemaleRabbit.cpp">
+			<Option target="SP_Rabbit_Simulation"/>
+		</Unit>
+		<Unit filename="C:/Etudes/isima/a2s1/Simu/SP_Rabbit-Simulation/src/FemaleRabbit.h">
+			<Option target="SP_Rabbit_Simulation"/>
+		</Unit>
+		<Unit filename="C:/Etudes/isima/a2s1/Simu/SP_Rabbit-Simulation/src/MaleRabbit.cpp">
+			<Option target="SP_Rabbit_Simulation"/>
+		</Unit>
+		<Unit filename="C:/Etudes/isima/a2s1/Simu/SP_Rabbit-Simulation/src/MaleRabbit.h">
+			<Option target="SP_Rabbit_Simulation"/>
+		</Unit>
+		<Unit filename="C:/Etudes/isima/a2s1/Simu/SP_Rabbit-Simulation/src/Rabbit.cpp">
+			<Option target="SP_Rabbit_Simulation"/>
+		</Unit>
+		<Unit filename="C:/Etudes/isima/a2s1/Simu/SP_Rabbit-Simulation/src/Rabbit.h">
+			<Option target="SP_Rabbit_Simulation"/>
+		</Unit>
+		<Unit filename="C:/Etudes/isima/a2s1/Simu/SP_Rabbit-Simulation/src/Simulation.cpp">
+			<Option target="SP_Rabbit_Simulation"/>
+		</Unit>
+		<Unit filename="C:/Etudes/isima/a2s1/Simu/SP_Rabbit-Simulation/src/Simulation.h">
+			<Option target="SP_Rabbit_Simulation"/>
+		</Unit>
 		<Unit filename="C:/Etudes/isima/a2s1/Simu/SP_Rabbit-Simulation/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

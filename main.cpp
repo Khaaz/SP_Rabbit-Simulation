@@ -1,6 +1,8 @@
 #include <iostream>
+#include "src/Simulation.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    Simulation simulation(20, 1);
+    simulation.run();
     return 0;
 }
