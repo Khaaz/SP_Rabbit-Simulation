@@ -6,16 +6,20 @@
 class MaleRabbit;
 
 class FemaleRabbit : public Rabbit {
-    static const int GESTATION = 1;
-    bool isPregnant;
-
+    int littersThisYear;
+    int theoricalNbLitters;
+    bool birthCalendar[12];
+    void generateCalendar();
     public:
-    // FemaleRabbit();
-    //~FemaleRabbit();
-    //FemaleRabbit(const FemaleRabbit&);
+    static const int GESTATION = 1;
 
-    void reproduce(MaleRabbit &male);
+    FemaleRabbit();
+
     SEX getSex() const override;
+    int getLittersThisYear() const;
+
+    int reproduce(int);
+    void grow() override;
 };
 
 

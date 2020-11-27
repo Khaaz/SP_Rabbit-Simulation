@@ -6,11 +6,7 @@
 class MaleRabbit : public Rabbit {
 
     public:
-    MaleRabbit();
-    //~MaleRabbit();
-    //MaleRabbit(const MaleRabbit&);
     SEX getSex() const override;
-
 };
 
 

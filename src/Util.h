@@ -1,0 +1,1 @@
+float randomBetween(float, float);

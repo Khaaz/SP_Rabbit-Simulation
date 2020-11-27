@@ -1,4 +1,0 @@
-"C:\Program Files\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" C:\Etudes\isima\a2s1\Simu\SP_Rabbit-Simulation
--- Configuring done
--- Generating done
--- Build files have been written to: C:/Etudes/isima/a2s1/Simu/SP_Rabbit-Simulation/cmake-build-debug

@@ -1,17 +1,14 @@
-#include "random"
-
 #include "Rabbit.h"
 #include "FemaleRabbit.h"
 #include "MaleRabbit.h"
+#include "Util.h"
+#include "Constant.h"
 
+Rabbit::Rabbit() : age(0), deathRate(DEATH_RATE_INFANT / 12) {}
 
-Rabbit::Rabbit() : age(0), survivalRate(0.35) {}
-
-//TODO faire un rand avec mastumoBOSS
-
-Rabbit& Rabbit::createRabbit() {
+Rabbit* Rabbit::createRabbit() {
     Rabbit* rabbit;
-    float r = rand();
+    float r = randomBetween(0, 1);
 
     if(r > 0.5){
         rabbit = new FemaleRabbit();
@@ -19,19 +16,28 @@ Rabbit& Rabbit::createRabbit() {
     else {
         rabbit = new MaleRabbit();
     }
-    rabbit->survivalRate = 0.35;
-    return *rabbit;
+    return rabbit;
 }
 
-int Rabbit::getAge() {
+int Rabbit::getAge() const {
     return age;
 }
 
-bool Rabbit::shouldDie(){
-    float r = rand();
-    return (r > survivalRate);
+bool Rabbit::shouldDie() const {
+    float r = randomBetween(0, 1);
+    return (r < deathRate);
 }
 
-bool Rabbit::canReproduce() {
+bool Rabbit::isMature() const {
     return age >= Rabbit::MATURITY;
+}
+
+void Rabbit::grow() {
+    ++age;
+    if(age == Rabbit::MATURITY){
+        deathRate = DEATH_RATE_ADULT / 12 ;
+    }
+    if (age > 10 * 12 && (age % 12) == 0 ) {
+        deathRate = deathRate + (DEATH_RATE_INCREASE / 12);
+    }
 }
