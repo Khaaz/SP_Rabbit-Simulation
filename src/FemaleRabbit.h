@@ -3,23 +3,18 @@
 
 #include "Rabbit.h"
 
-class MaleRabbit;
-
 class FemaleRabbit : public Rabbit {
     int littersThisYear;
     int theoricalNbLitters;
     bool birthCalendar[12];
     void generateCalendar();
-    public:
-    static const int GESTATION = 1;
 
+public:
     FemaleRabbit();
-
     SEX getSex() const override;
-    int getLittersThisYear() const;
 
     int reproduce(int);
-    void grow() override;
+    void grow(Stats &stats) override;
 };
 
 

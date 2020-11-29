@@ -1,7 +1,6 @@
 #include "Stats.h"
 #include "FemaleRabbit.h"
 #include <numeric>
-#include <iostream>
 
 StatsYear::StatsYear(int pop) : startingPop(pop), pop(0), deaths(0), births(0) {}
 
@@ -21,34 +20,13 @@ int StatsYear::getDeaths() const {
     return deaths;
 }
 
-float StatsYear::getAverageLitters() const {
-    return (float)getTotalLitters() / (float)getNumberLitters();
-}
-
-int StatsYear::getNumberLitters() const {
-    return litters.size();
-}
-
-int StatsYear::getTotalLitters() const {
-    std::cout << std::accumulate(litters.begin(), litters.end(), 0) << std::endl;
-    return std::accumulate(litters.begin(), litters.end(), 0);
-}
-
 void StatsYear::increment(int deaths, int births) {
     this->deaths += deaths;
     this->births += births;
 }
 
-void StatsYear::endYear(const std::vector<std::unique_ptr<Rabbit>>& rabbits) {
-    int i = 0;
-    this->pop = rabbits.size();
-    while (i < rabbits.size() && rabbits[i]->isMature()) {
-        if (rabbits[i]->getSex() == SEX::FEMALE ) {
-            litters.push_back(dynamic_cast<FemaleRabbit *>(rabbits[i].get())->getLittersThisYear());
-        }
-        ++i;
-    }
-
+void StatsYear::endYear(int pop) {
+    this->pop = pop;
 }
 
 // Stats
@@ -89,18 +67,12 @@ int Stats::getBirths(int year) const {
     return yearlyStats[year]->getBirths();
 }
 
-float Stats::getAverageLitters(int year) const {
-    return yearlyStats[year]->getAverageLitters();
+void Stats::addLitter(int litters) {
+    this->litters.push_back(litters);
 }
 
-float Stats::getTotalAverageLitters() const {
-    float sum = 0;
-    float numberElems = 0;
-    for (auto& year : yearlyStats) {
-        sum += year->getTotalLitters();
-        numberElems += year->getNumberLitters();
-    }
-    return sum / numberElems;
+float Stats::getAverageLitters() const {
+    return (float)std::accumulate(litters.begin(), litters.end(), 0) / (float)litters.size();
 }
 
 void Stats::addDeath(int age) {

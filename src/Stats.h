@@ -3,14 +3,12 @@
 
 #include <vector>
 #include <memory>
-#include "Rabbit.h"
 
 class StatsYear {
     int startingPop;
     int pop; // nombre d'individu dans la population a la fin de l'annee
     int deaths; // nombre de mort cette annee
     int births; // nombre de naissance cette annee
-    std::vector<int> litters; // liste de tous les nombres de portees cette annee
 
     public:
     explicit StatsYear(int pop);
@@ -18,16 +16,14 @@ class StatsYear {
     int getPop() const;
     int getBirths() const;
     int getDeaths() const;
-    float getAverageLitters() const; // moyenne des portees cette annee
-    int getTotalLitters() const; // nombre total de portee cette annee
-    int getNumberLitters() const; // nombre d'elements
     void increment(int deaths, int births); // appelle chaque mois
-    void endYear(const std::vector<std::unique_ptr<Rabbit>>&); // appelle chaque fin d'annee
+    void endYear(int pop); // appelle chaque fin d'annee
 };
 
 class Stats {
     std::vector<int> ageOfDeaths; // liste de tous les ages de mort des lapins
     std::vector<StatsYear*> yearlyStats; // liste des stats par an
+    std::vector<int> litters; // liste de tous les nombres de portees cette annee
 
     public:
     float getAverageAgeOfDeath() const; // nombre moyen de l'age de mort
@@ -37,9 +33,9 @@ class Stats {
     int getPop(int year) const; // nombre d'individu dans la pop pour l'annee X
     int getDeaths(int year) const; // nombre de mort pour l'annee X
     int getBirths(int year) const; // nombre de naissance pour l'annee X
-    float getAverageLitters(int year) const; // moyenne des portees pour l'annee X
-    float getTotalAverageLitters() const; // moyenne des portees totales
+    float getAverageLitters() const; // moyenne des portees totales
 
+    void addLitter(int litters);
     void addDeath(int age);
     void addYear(StatsYear* year);
 };

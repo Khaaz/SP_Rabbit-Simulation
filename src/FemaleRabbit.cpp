@@ -8,10 +8,6 @@ SEX FemaleRabbit::getSex() const {
     return SEX::FEMALE;
 }
 
-int FemaleRabbit::getLittersThisYear() const {
-    return littersThisYear;
-}
-
 // Return a random between 3 and 7 if it is a month where it's supposed to give birth, else return 0
 int FemaleRabbit::reproduce(int curMonth) {
     if (birthCalendar[curMonth]) {
@@ -22,15 +18,18 @@ int FemaleRabbit::reproduce(int curMonth) {
     }
 }
 
-void FemaleRabbit::grow() {
-    Rabbit::grow();
+void FemaleRabbit::grow(Stats& stats) {
+    Rabbit::grow(stats);
     if ((getAge() % 12) == 0) {
+        if (getAge() > 23) {
+            stats.addLitter(littersThisYear);
+        }
         littersThisYear = 0;
         generateCalendar();
     }
 }
 
-void FemaleRabbit::generateCalendar(){
+void FemaleRabbit::generateCalendar() {
     int i = 0, selectedMonth;
     int monthsIndex[12];
     float r = randomBetween(0, 1);

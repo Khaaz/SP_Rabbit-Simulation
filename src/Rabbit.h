@@ -3,6 +3,8 @@
 
 // https://perso.isima.fr/~dahill/Simu-ZZ2/Lab%20%23%204%20-%20Rabbit%20Population%20growth%20in%20C++.pdf
 
+#include "Stats.h"
+
 enum SEX { FEMALE, MALE };
 
 class Rabbit {
@@ -22,7 +24,7 @@ class Rabbit {
     int getAge() const;
     bool shouldDie() const;
     bool isMature() const;
-    virtual void grow();
+    virtual void grow(Stats &stats);
 };
 
 #endif //SP_RABBIT_SIMULATION_RABBIT_H

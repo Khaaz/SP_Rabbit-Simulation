@@ -32,7 +32,7 @@ bool Rabbit::isMature() const {
     return age >= Rabbit::MATURITY;
 }
 
-void Rabbit::grow() {
+void Rabbit::grow(Stats &stats) {
     ++age;
     if(age == Rabbit::MATURITY){
         deathRate = DEATH_RATE_ADULT / 12 ;

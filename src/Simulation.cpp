@@ -30,7 +30,7 @@ void Simulation::run() {
 
         // chaque annee -> stats
         if (i % 12 == 0 && i != 0) {
-            yearStat->endYear(this->rabbits);
+            yearStat->endYear(this->rabbits.size());
             this->stats.addYear(yearStat);
 
             yearStat = new StatsYear(this->rabbits.size());
@@ -62,7 +62,7 @@ void Simulation::run() {
                 }
 
                 // grow
-                this->rabbits[j]->grow();
+                this->rabbits[j]->grow(this->stats);
                 if (this->rabbits[j]->isMature()) {
                     this->rabbits[j]->getSex() == SEX::MALE
                         ? ++adultMale
@@ -80,7 +80,7 @@ void Simulation::run() {
         }
     }
 
-    yearStat->endYear(this->rabbits);
+    yearStat->endYear(this->rabbits.size());
     this->stats.addYear(yearStat);
 
     std::cout << "SIMULATION::RUN - end" << std::endl;
@@ -94,7 +94,7 @@ void Simulation::displayStats() {
     std::cout << "Population finale: " << rabbits.size() << std::endl;
     std::cout << "Nombre de mort total: " << stats.getTotalDeaths() << std::endl;
     std::cout << "Nombre de naissances total: " << stats.getTotalBirths() << std::endl;
-    std::cout << "Moyenne du nombre de portees: " << stats.getTotalAverageLitters() << std::endl;
+    std::cout << "Moyenne du nombre de portees: " << stats.getAverageLitters() << std::endl;
 
 // doyen
 // nombre de bebe par portee
@@ -103,7 +103,6 @@ void Simulation::displayStats() {
         std::cout << "Population: " << stats.getPop(i) << std::endl;
         std::cout << "Nombre de naissances: " << stats.getBirths(i) << std::endl;
         std::cout << "Nombre de morts: " << stats.getDeaths(i) << std::endl;
-        std::cout << "Moyenne du nombre de portees: " << stats.getAverageLitters(i) << std::endl;
         std::cout << "% morts / pop total: " << (stats.getDeaths(i) / stats.getStartingPop(i)) * 100 << std::endl;
         std::cout << "% naissance / pop total: " << (stats.getBirths(i) / stats.getStartingPop(i)) * 100 << std::endl;
     }
