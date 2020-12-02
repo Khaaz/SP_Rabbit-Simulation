@@ -3,21 +3,25 @@
 
 #include <vector>
 #include <memory>
+
 #include "Rabbit.h"
 #include "MaleRabbit.h"
 #include "FemaleRabbit.h"
 #include "Stats.h"
 
+/**
+ * @brief represente une simulation
+ */
 class Simulation {
-    int duration; // mois
-    int adultFemale;
-    int adultMale;
-    std::vector<std::unique_ptr<Rabbit>> rabbits;
+    int duration; // duree en mois
+    int femaleAdults; // nombre de femelle actuellement dans la population
+    int maleAdults; // nombre de males actuellement dans la population
+    std::vector<std::unique_ptr<Rabbit>> rabbits; // population actuelle de lapins
+    Stats stats; // statistiques pour cette simulation
     void deleteRabbit(int index);
-    Stats stats;
 
     public:
-    Simulation(int duration, int startingCouple);
+    Simulation(int duration, int startingCouple, int seed);
     void run();
     void displayStats();
 };

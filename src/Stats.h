@@ -4,22 +4,28 @@
 #include <vector>
 #include <memory>
 
+/**
+ * @brief Les statistiques pour une annee
+ */
 class StatsYear {
-    int startingPop;
+    int startingPop; // population initiale au debut de l'annee
     int pop; // nombre d'individu dans la population a la fin de l'annee
     int deaths; // nombre de mort cette annee
     int births; // nombre de naissance cette annee
 
     public:
     explicit StatsYear(int pop);
-    int getStartingPop() const;
-    int getPop() const;
-    int getBirths() const;
-    int getDeaths() const;
+    int getStartingPop() const; // population initiale au debut de l'annee
+    int getPop() const; // population finale de l'annee
+    int getBirths() const; // nombre de naissances dans l'annee
+    int getDeaths() const; // nombre de morts dans l'annee
     void increment(int deaths, int births); // appelle chaque mois
     void endYear(int pop); // appelle chaque fin d'annee
 };
 
+/**
+ * @brief Les statistiques globales
+ */
 class Stats {
     std::vector<int> ageOfDeaths; // liste de tous les ages de mort des lapins
     std::vector<StatsYear*> yearlyStats; // liste des stats par an

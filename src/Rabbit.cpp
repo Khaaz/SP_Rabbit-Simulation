@@ -1,14 +1,19 @@
 #include "Rabbit.h"
 #include "FemaleRabbit.h"
 #include "MaleRabbit.h"
-#include "Util.h"
+#include "Generator.h"
 #include "Constant.h"
 
 Rabbit::Rabbit() : age(0), deathRate(DEATH_RATE_INFANT / 12) {}
 
+/**
+ * @brief Creer un lapin aleatoirement Male ou Femelle
+ * 
+ * @return Rabbit* 
+ */
 Rabbit* Rabbit::createRabbit() {
     Rabbit* rabbit;
-    float r = randomBetween(0, 1);
+    float r = Generator::randomBetween(0, 1);
 
     if(r > 0.5){
         rabbit = new FemaleRabbit();
@@ -19,19 +24,40 @@ Rabbit* Rabbit::createRabbit() {
     return rabbit;
 }
 
+/**
+ * @brief Age du lapi
+ * 
+ * @return int 
+ */
 int Rabbit::getAge() const {
     return age;
 }
 
+/**
+ * @brief Si le lapin doit mourir ou non. Base sur un random en fonction de ses chances de mourir.
+ * 
+ * @return true 
+ * @return false 
+ */
 bool Rabbit::shouldDie() const {
-    float r = randomBetween(0, 1);
-    return (r < deathRate);
+    return Generator::randomBetween(0, 1) < deathRate;
 }
 
+/**
+ * @brief Si le lapin a passe le seuil de maturite (est apte a se reproduire).
+ * 
+ * @return true 
+ * @return false 
+ */
 bool Rabbit::isMature() const {
     return age >= Rabbit::MATURITY;
 }
 
+/**
+ * @brief Incremente l'age du lapin, fait varier ses probabilités de mort si besoin.
+ * 
+ * @param stats 
+ */
 void Rabbit::grow(Stats &stats) {
     ++age;
     if(age == Rabbit::MATURITY){

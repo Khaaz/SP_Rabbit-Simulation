@@ -1,8 +1,18 @@
 #include "iostream"
 
+#include "Generator.h"
 #include "Simulation.h"
 
-Simulation::Simulation(int duration, int startingCouple) : duration(duration * 12), adultFemale(0), adultMale(0) {
+/**
+ * @brief Construct a new Simulation:: Simulation object
+ * Genere le couple initial dans la population initiale.
+ * 
+ * @param duration int - la duree en mois
+ * @param startingCouple int - le nombre de couple de depart
+ * @param seed ind - la seed a utiliser pour cette simulation
+ */
+Simulation::Simulation(int duration, int startingCouple, int seed) : duration(duration * 12), femaleAdults(0), maleAdults(0) {
+    Generator::seed(seed);
 
     for(int i = 0; i < startingCouple; i++) {
         rabbits.push_back(std::unique_ptr<Rabbit>(new MaleRabbit) );
@@ -10,15 +20,24 @@ Simulation::Simulation(int duration, int startingCouple) : duration(duration * 1
     }
 }
 
+/**
+ * @brief Supprime un lapin de la population. Ajuste aussi les compteurs d'adultes males et femelles
+ * 
+ * @param index 
+ */
 void Simulation::deleteRabbit(int index) {
     rabbits[index]->getSex() == SEX::MALE
-        ? --adultMale
-        : --adultFemale;
+        ? --maleAdults
+        : --femaleAdults;
 
     rabbits.erase(rabbits.begin() + index);
 }
 
 
+/**
+ * @brief Run the simulation.
+ * 
+ */
 void Simulation::run() {
     int j, nbReproductions, nbBabies, curPop;
     auto *yearStat = new StatsYear(this->rabbits.size());
@@ -54,7 +73,7 @@ void Simulation::run() {
                 // reproduce
                 if(this->rabbits[j]->getSex() == SEX::FEMALE
                     && this->rabbits[j]->isMature()
-                    && nbReproductions < (this->adultMale * Rabbit::FEMALES_PER_MALE)
+                    && nbReproductions < (this->maleAdults * Rabbit::FEMALES_PER_MALE)
                     ) {
 
                     nbBabies += (dynamic_cast<FemaleRabbit*>(this->rabbits[j].get()))->reproduce(i % 12);
@@ -65,8 +84,8 @@ void Simulation::run() {
                 this->rabbits[j]->grow(this->stats);
                 if (this->rabbits[j]->isMature()) {
                     this->rabbits[j]->getSex() == SEX::MALE
-                        ? ++adultMale
-                        : ++adultFemale;
+                        ? ++maleAdults
+                        : ++femaleAdults;
                 }
                 ++j;
             }
@@ -86,6 +105,9 @@ void Simulation::run() {
     std::cout << "SIMULATION::RUN - end" << std::endl;
 }
 
+/**
+ * @brief Display the statistics gathered from the simulation.
+ */
 void Simulation::displayStats() {
     int durationYears = duration / 12;
     std::cout << std::endl << "Simulation sur "<< durationYears << " annees." << std::endl << std::endl;
@@ -103,7 +125,8 @@ void Simulation::displayStats() {
         std::cout << "Population: " << stats.getPop(i) << std::endl;
         std::cout << "Nombre de naissances: " << stats.getBirths(i) << std::endl;
         std::cout << "Nombre de morts: " << stats.getDeaths(i) << std::endl;
-        std::cout << "% morts / pop total: " << (stats.getDeaths(i) / stats.getStartingPop(i)) * 100 << std::endl;
-        std::cout << "% naissance / pop total: " << (stats.getBirths(i) / stats.getStartingPop(i)) * 100 << std::endl;
+        int diff = stats.getPop(i) - stats.getStartingPop(i);
+        std::cout << "% accroissement de la pop: " << (float)diff / (float)stats.getPop(i) * 100 << std::endl;
+        std::cout << "Multiplicateur de la pop: " << (float)diff / (float)stats.getPop(i) * 100 << std::endl;
     }
 }

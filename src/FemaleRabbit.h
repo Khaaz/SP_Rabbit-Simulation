@@ -4,12 +4,12 @@
 #include "Rabbit.h"
 
 class FemaleRabbit : public Rabbit {
-    int littersThisYear;
-    int theoricalNbLitters;
-    bool birthCalendar[12];
+    int littersThisYear; // nombre de portee reelle durant l'annee
+    int theoricalNbLitters; // nombre de portee theorique durant l'annee (4 a 8)
+    bool birthCalendar[12]; // calendrier des portees
     void generateCalendar();
 
-public:
+    public:
     FemaleRabbit();
     SEX getSex() const override;
 
