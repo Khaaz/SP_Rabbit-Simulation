@@ -14,7 +14,7 @@
 Simulation::Simulation(int duration, int startingCouple, int seed) : duration(duration * 12), femaleAdults(0), maleAdults(0) {
     Generator::seed(seed);
 
-    for(int i = 0; i < startingCouple; i++) {
+    for(int i = 0; i < startingCouple; ++i) {
         rabbits.push_back(std::unique_ptr<Rabbit>(new MaleRabbit) );
         rabbits.push_back(std::unique_ptr<Rabbit>(new FemaleRabbit) );
     }
@@ -39,16 +39,16 @@ void Simulation::deleteRabbit(int index) {
  * 
  */
 void Simulation::run() {
-    int j, nbReproductions, nbBabies, curPop;
+    int j, nbReproductions, nbBabies, curPop,age;
     auto *yearStat = new StatsYear(this->rabbits.size());
 
     std::cout << "SIMULATION::RUN - start" << std::endl;
 
-    for(int i = 0; i < this->duration; i++) {
+    for(int i = 0; i < this->duration; ++i) {
         std::cout << "SIMULATION::RUN - time: " << (i / 12) << "y " << i % 12 << "m" << std::endl;
 
         // chaque annee -> stats
-        if (i % 12 == 0 && i != 0) {
+        if (i != 0 && i % 12 == 0) {
             yearStat->endYear(this->rabbits.size());
             this->stats.addYear(yearStat);
 
@@ -64,7 +64,9 @@ void Simulation::run() {
         while (j < rabbits.size()) {
             // mort => delete
             if (this->rabbits[j]->shouldDie()) {
-                this->stats.addDeath(this->rabbits[j]->getAge());
+                age = this->rabbits[j]->getAge();
+                this->stats.addDeath(age);
+                this->stats.setEldest(age);
                 this->deleteRabbit(j);
             }
             // pas mort
@@ -94,13 +96,14 @@ void Simulation::run() {
         yearStat->increment( curPop - this->rabbits.size(), nbBabies);
 
         // ajoute les bebes
-        for(j = 0; j < nbBabies ; j++) {
+        for(j = 0; j < nbBabies; ++j) {
             this->rabbits.push_back(std::unique_ptr<Rabbit>(Rabbit::createRabbit()));
         }
     }
 
     yearStat->endYear(this->rabbits.size());
     this->stats.addYear(yearStat);
+    this->stats.endStats(rabbits);
 
     std::cout << "SIMULATION::RUN - end" << std::endl;
 }
@@ -117,8 +120,8 @@ void Simulation::displayStats() {
     std::cout << "Nombre de mort total: " << stats.getTotalDeaths() << std::endl;
     std::cout << "Nombre de naissances total: " << stats.getTotalBirths() << std::endl;
     std::cout << "Moyenne du nombre de portees: " << stats.getAverageLitters() << std::endl;
+    std::cout << "Plus vieux lapin de la simulation: " << stats.getDean() / 12 << " ans et " <<  stats.getDean() % 12 << " mois" << std::endl;
 
-// doyen
 // nombre de bebe par portee
     for (int i = 0; i < durationYears; ++i) {
         std::cout << std::endl << "ANNEE: " << i + 1 << std::endl;
@@ -126,7 +129,7 @@ void Simulation::displayStats() {
         std::cout << "Nombre de naissances: " << stats.getBirths(i) << std::endl;
         std::cout << "Nombre de morts: " << stats.getDeaths(i) << std::endl;
         int diff = stats.getPop(i) - stats.getStartingPop(i);
-        std::cout << "% accroissement de la pop: " << (float)diff / (float)stats.getPop(i) * 100 << std::endl;
-        std::cout << "Multiplicateur de la pop: " << (float)diff / (float)stats.getPop(i) * 100 << std::endl;
+        std::cout << "% accroissement de la pop: " << (((float)stats.getPop(i)/ (float) stats.getStartingPop(i)) - 1) * 100 << std::endl;
+        std::cout << "Multiplicateur de la pop: " << ((float)stats.getPop(i)/ (float) stats.getStartingPop(i))  << std::endl;
     }
 }

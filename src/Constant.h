@@ -5,13 +5,19 @@
 const int SEED = 1;
 
 // Taux de mortalité infantile
-const float DEATH_RATE_INFANT = 0.60;
+const float DEATH_RATE_INFANT = 0.65;
 
 // Taux de mortalité infantile
 const float DEATH_RATE_ADULT = 0.40;
 
 //Taux de mortalité
 const float DEATH_RATE_INCREASE = 10;
+
+// borne inferieur de maturite pour un lapin
+const int MATURITY_MIN_AGE = 5;
+
+// borne superieur de maturite pour un lapin
+const int MATURITY_MAX_AGE = 8;
 
 // Taille du tableau de portées
 const int LITTERS_ARRAYS_SIZE = 5;

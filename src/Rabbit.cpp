@@ -4,7 +4,9 @@
 #include "Generator.h"
 #include "Constant.h"
 
-Rabbit::Rabbit() : age(0), deathRate(DEATH_RATE_INFANT / 12) {}
+Rabbit::Rabbit() : age(0), deathRate(DEATH_RATE_INFANT / 12) {
+    maturity = Generator::randomBetween(MATURITY_MIN_AGE, MATURITY_MAX_AGE);
+}
 
 /**
  * @brief Creer un lapin aleatoirement Male ou Femelle
@@ -50,7 +52,7 @@ bool Rabbit::shouldDie() const {
  * @return false 
  */
 bool Rabbit::isMature() const {
-    return age >= Rabbit::MATURITY;
+    return age >= maturity;
 }
 
 /**
@@ -60,8 +62,8 @@ bool Rabbit::isMature() const {
  */
 void Rabbit::grow(Stats &stats) {
     ++age;
-    if(age == Rabbit::MATURITY){
-        deathRate = DEATH_RATE_ADULT / 12 ;
+    if(age == maturity){
+        deathRate = DEATH_RATE_ADULT / 12;
     }
     if (age > 10 * 12 && (age % 12) == 0 ) {
         deathRate = deathRate + (DEATH_RATE_INCREASE / 12);

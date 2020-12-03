@@ -27,7 +27,7 @@ Pour avoir une simulation plus réaliste, nous avons choisi un pas temporel de `
 
 ### Adulte
 
-Les adultes sont les lapins qui peuvent se reproduire. Nous avons décidé que tous les lapins le devenaient à l'âge de `1 ans`.
+Les adultes sont les lapins qui peuvent se reproduire. Tous les lapins deviennent mature entre `5 et 8 mois`. Nous le determinons aléatoirement au moment de la creation du lapin.
 
 ### Mortalité
 
@@ -46,16 +46,33 @@ Par conséquent nous faisons tourner notre simulation sur un nombre limité d'an
 
 ### Details algorithmique
 
-
-
 A chaque fois que nous avons un évenement avec une certaine probabilité, nous générons un nombre entre 0 et 1. Pour le générer, nous utilisons la fonction `uniform_real_distribution` en utilisant le generateur aléatoire de Mersenne Twister qui existe directement dans la librarie standard c++.
 
 ```cpp
-float Util::randomBetween(float a, float b) {
-    static std::mt19937 generator (SEED);
+/**
+ * @brief Genere un nombre aléatoire entre deux nombres.
+ * Utilises le generateur de mersenne twister
+ *
+ * @param a float
+ * @param b float
+ * @return float
+ */
+float Generator::randomBetween(float a, float b) {
     std::uniform_real_distribution<double> dis(a, b);
-    return dis(generator);
+
+    return dis(Generator::get());
 }
+
+/**
+ * @brief The generateur mersenne twister
+
+ * @return
+ */
+std::mt19937& Generator::get() {
+    static std::mt19937 generator(SEED);
+    return generator;
+}
+
 ```
 
 Ensuite, si le nombre est inférieur a notre nombre random, l'événement arrive, sinon il n'arrive pas.
@@ -68,7 +85,7 @@ Ensuite, nous générons un calendrier de naissances par individu à partir du n
 ### Complexite Algorithmique
 
 Notre algorithme principal est en O(n*m) avec n le nombre de mois et m le nombre d'individus dans la population. Sachant que m augmente a chaque étape.  
-TODO: m = m * X
+
 
 ### Compilation
 
@@ -101,8 +118,8 @@ pas de predateurs (comme dit dans le sujet), pas de maladies
 trouver X mathematiquement?
 ~~X empirique~~
 ~~faire de quoi lancer x simu avec seed qui s'incrémente~~
-random maturity age + ajouter dans le rapport
-mettre des longs?
-? doyen
+~~random maturity age + ajouter dans le rapport~~
+~~mettre des longs?~~
+~~ doyen~~
 ? nombre de bebe par portee
 tenter sur isima

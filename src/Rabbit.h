@@ -13,10 +13,9 @@ class Stats;
 class Rabbit {
     int age; // age en mois
     float deathRate; // probabilite de mourir
+    int maturity; // age en mois de maturite d'un lapin (age auquel il peut procreer)
 
     public:
-    // TODO: random between 5 - 8?
-    static const int MATURITY = 12; // nombre de mois avant d'attendre la maturite (etre en age de procreer)
     static const int FEMALES_PER_MALE = 15; // nombre de femelles pouvant etre fecondee par un male
 
     static Rabbit* createRabbit();

@@ -1,4 +1,5 @@
 #include <numeric>
+#include <memory>
 
 #include "Stats.h"
 #include "FemaleRabbit.h"
@@ -10,7 +11,7 @@ StatsYear::StatsYear(int pop) : startingPop(pop), pop(0), deaths(0), births(0) {
  * 
  * @return int 
  */
-int StatsYear::getStartingPop() const {
+long StatsYear::getStartingPop() const {
     return startingPop;
 };
 
@@ -19,7 +20,7 @@ int StatsYear::getStartingPop() const {
  * 
  * @return int 
  */
-int StatsYear::getPop() const {
+long StatsYear::getPop() const {
     return pop;
 }
 
@@ -28,7 +29,7 @@ int StatsYear::getPop() const {
  * 
  * @return int 
  */
-int StatsYear::getBirths() const {
+long StatsYear::getBirths() const {
     return births;
 }
 
@@ -37,7 +38,7 @@ int StatsYear::getBirths() const {
  * 
  * @return int 
  */
-int StatsYear::getDeaths() const {
+long StatsYear::getDeaths() const {
     return deaths;
 }
 
@@ -53,7 +54,7 @@ void StatsYear::increment(int deaths, int births) {
 }
 
 /**
- * @brief Finis l'annee, ajoute la population finale
+ * @brief Appelle a la fin de l'annee, ajoute la population finale
  * 
  * @param pop 
  */
@@ -77,7 +78,7 @@ float Stats::getAverageAgeOfDeath() const {
  * 
  * @return int 
  */
-int Stats::getTotalDeaths() const {
+long Stats::getTotalDeaths() const {
     int sum = 0;
     for (auto& year : yearlyStats) {
         sum += year->getDeaths();
@@ -90,7 +91,7 @@ int Stats::getTotalDeaths() const {
  * 
  * @return int 
  */
-int Stats::getTotalBirths() const {
+long Stats::getTotalBirths() const {
     int sum = 0;
     for (auto& year : yearlyStats) {
         sum += year->getBirths();
@@ -104,7 +105,7 @@ int Stats::getTotalBirths() const {
  * @param year 
  * @return int 
  */
-int Stats::getStartingPop(int year) const {
+long Stats::getStartingPop(int year) const {
     return yearlyStats[year]->getStartingPop();
 }
 
@@ -114,7 +115,7 @@ int Stats::getStartingPop(int year) const {
  * @param year 
  * @return int 
  */
-int Stats::getPop(int year) const {
+long Stats::getPop(int year) const {
     return yearlyStats[year]->getPop();
 }
 
@@ -124,7 +125,7 @@ int Stats::getPop(int year) const {
  * @param year 
  * @return int 
  */
-int Stats::getDeaths(int year) const {
+long Stats::getDeaths(int year) const {
     return yearlyStats[year]->getDeaths();
 }
 
@@ -134,7 +135,7 @@ int Stats::getDeaths(int year) const {
  * @param year 
  * @return int 
  */
-int Stats::getBirths(int year) const {
+long Stats::getBirths(int year) const {
     return yearlyStats[year]->getBirths();
 }
 
@@ -157,6 +158,15 @@ float Stats::getAverageLitters() const {
 }
 
 /**
+ * @brief L'age du plus vieux lapin
+ * 
+ * @return int 
+ */
+int Stats::getDean() const {
+    return dean;
+}
+
+/**
  * @brief Ajoute l'age de mort d'un individu
  * 
  * @param age 
@@ -173,3 +183,24 @@ void Stats::addDeath(int age) {
 void Stats::addYear(StatsYear *year) {
     yearlyStats.push_back(year);
 }
+
+/**
+ * @brief Appelle a la fin de la simulation, collecte la bonne stats pour le doyen.
+ *
+ * @param year
+ */
+void Stats::endStats(const std::vector<std::unique_ptr<Rabbit>>& rabbits) {
+    setEldest(rabbits[0]->getAge());
+}
+
+/** Met a jour l'age du doyen si l'age en parametre est plus grand
+ *
+ * @param age
+ */
+void Stats::setEldest(int age){
+    if(age > dean){
+        dean = age;
+    }
+}
+
+
