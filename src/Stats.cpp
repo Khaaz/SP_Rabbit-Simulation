@@ -64,6 +64,12 @@ void StatsYear::endYear(int pop) {
 
 // Stats
 
+Stats::~Stats() {
+    for (auto* obj : yearlyStats) {
+        delete obj;
+    }
+}
+
 /**
  * @brief L'esperance de vie: l'age moyen de mort.
  * 

@@ -35,6 +35,7 @@ class Stats {
     int dean = 0; // Le plus vieux lapin de cette simulation
 
     public:
+    ~Stats();
     float getAverageAgeOfDeath() const; // nombre moyen de l'age de mort
     long getTotalDeaths() const; // nombre total de mort
     long getTotalBirths() const; // nombre total de naissance
