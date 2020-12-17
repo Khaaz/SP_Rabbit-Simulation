@@ -5,7 +5,7 @@
 #include "Constant.h"
 
 Rabbit::Rabbit() : age(0), deathRate(DEATH_RATE_INFANT / 12) {
-    maturity = Generator::randomBetween(MATURITY_MIN_AGE, MATURITY_MAX_AGE);
+    maturity = (int)Generator::randomBetween(MATURITY_MIN_AGE, MATURITY_MAX_AGE);
 }
 
 /**
@@ -15,7 +15,7 @@ Rabbit::Rabbit() : age(0), deathRate(DEATH_RATE_INFANT / 12) {
  */
 Rabbit* Rabbit::createRabbit() {
     Rabbit* rabbit;
-    float r = Generator::randomBetween(0, 1);
+    double r = Generator::randomBetween(0, 1);
 
     if(r > 0.5){
         rabbit = new FemaleRabbit();

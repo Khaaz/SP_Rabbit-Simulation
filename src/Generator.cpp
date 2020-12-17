@@ -9,7 +9,7 @@
  * @param b float
  * @return float
  */
-float Generator::randomBetween(float a, float b) {
+double Generator::randomBetween(float a, float b) {
     std::uniform_real_distribution<double> dis(a, b);
 
     return dis(Generator::get());

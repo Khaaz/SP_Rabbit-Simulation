@@ -23,7 +23,7 @@ SEX FemaleRabbit::getSex() const {
 int FemaleRabbit::reproduce(int curMonth) {
     if (birthCalendar[curMonth]) {
         ++littersThisYear;
-        return Generator::randomBetween(3, 7);
+        return (int)Generator::randomBetween(3, 7);
     } else {
         return 0;
     }
@@ -52,7 +52,7 @@ void FemaleRabbit::grow(Stats& stats) {
 void FemaleRabbit::generateCalendar() {
     int i = 0, selectedMonth;
     int monthsIndex[12];
-    float r = Generator::randomBetween(0, 1);
+    double r = Generator::randomBetween(0, 1);
 
     for (int j = 0; j < 12; ++j){
         monthsIndex[j] = j;

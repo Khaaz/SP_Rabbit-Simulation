@@ -26,7 +26,6 @@ void runMany(int numberToRun, int duration, int startingCouple, int baseSeed = S
 }
 
 int main() {
-    runMany(2, 6, 20, 2);
+    runMany(1, 9, 10, 50);
     return 0;
 }
-

@@ -10,7 +10,7 @@ class Generator {
     static std::mt19937& get();
 
     public:
-    static float randomBetween(float, float);
+    static double randomBetween(float, float);
     static void seed(int seed);
 };
 
