@@ -122,7 +122,6 @@ void Simulation::displayStats() {
     std::cout << "Moyenne du nombre de portees: " << stats.getAverageLitters() << std::endl;
     std::cout << "Plus vieux lapin de la simulation: " << stats.getDean() / 12 << " ans et " <<  stats.getDean() % 12 << " mois" << std::endl;
 
-// nombre de bebe par portee
     for (int i = 0; i < durationYears; ++i) {
         std::cout << std::endl << "ANNEE: " << i + 1 << std::endl;
         std::cout << "Population: " << stats.getPop(i) << std::endl;
@@ -130,5 +129,32 @@ void Simulation::displayStats() {
         std::cout << "Nombre de morts: " << stats.getDeaths(i) << std::endl;
         std::cout << "% accroissement de la pop: " << (((float)stats.getPop(i)/ (float) stats.getStartingPop(i)) - 1) * 100 << std::endl;
         std::cout << "Multiplicateur de la pop: " << ((float)stats.getPop(i)/ (float) stats.getStartingPop(i))  << std::endl;
+    }
+}
+
+void Simulation::writeStats(std::ostream& outfile) {
+    int durationYears = duration / 12;
+
+    outfile << "Population: " << rabbits.size() << std::endl;
+    for (int i = 0; i < durationYears; ++i) {
+        outfile << i << " : " << stats.getPop(i) << std::endl;
+    }
+
+    outfile << std::endl << std::endl;
+
+    outfile << "Esperance de vie: " << stats.getAverageAgeOfDeath() << std::endl;
+    outfile << "Population finale: " << rabbits.size() << std::endl;
+    outfile << "Nombre de mort total: " << stats.getTotalDeaths() << std::endl;
+    outfile << "Nombre de naissances total: " << stats.getTotalBirths() << std::endl;
+    outfile << "Moyenne du nombre de portees: " << stats.getAverageLitters() << std::endl;
+    outfile << "Plus vieux lapin de la simulation: " << stats.getDean() / 12 << " ans et " <<  stats.getDean() % 12 << " mois" << std::endl;
+
+    for (int i = 0; i < durationYears; ++i) {
+        outfile << std::endl << "ANNEE: " << i + 1 << std::endl;
+        outfile << "Population: " << stats.getPop(i) << std::endl;
+        outfile << "Nombre de naissances: " << stats.getBirths(i) << std::endl;
+        outfile << "Nombre de morts: " << stats.getDeaths(i) << std::endl;
+        outfile << "% accroissement de la pop: " << (((float)stats.getPop(i)/ (float) stats.getStartingPop(i)) - 1) * 100 << std::endl;
+        outfile << "Multiplicateur de la pop: " << ((float)stats.getPop(i)/ (float) stats.getStartingPop(i))  << std::endl;
     }
 }

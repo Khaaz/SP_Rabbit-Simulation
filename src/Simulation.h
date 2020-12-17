@@ -1,6 +1,8 @@
 #ifndef SP_RABBIT_SIMULATION_SIMULATION_H
 #define SP_RABBIT_SIMULATION_SIMULATION_H
 
+#include <iostream>
+#include <fstream>
 #include <vector>
 #include <memory>
 
@@ -24,6 +26,7 @@ class Simulation {
     Simulation(int duration, int startingCouple, int seed);
     void run();
     void displayStats();
+    void writeStats(std::ostream& outfile);
 };
 
 
