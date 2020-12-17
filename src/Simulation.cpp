@@ -128,7 +128,6 @@ void Simulation::displayStats() {
         std::cout << "Population: " << stats.getPop(i) << std::endl;
         std::cout << "Nombre de naissances: " << stats.getBirths(i) << std::endl;
         std::cout << "Nombre de morts: " << stats.getDeaths(i) << std::endl;
-        int diff = stats.getPop(i) - stats.getStartingPop(i);
         std::cout << "% accroissement de la pop: " << (((float)stats.getPop(i)/ (float) stats.getStartingPop(i)) - 1) * 100 << std::endl;
         std::cout << "Multiplicateur de la pop: " << ((float)stats.getPop(i)/ (float) stats.getStartingPop(i))  << std::endl;
     }
