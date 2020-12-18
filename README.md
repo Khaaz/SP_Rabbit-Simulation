@@ -170,6 +170,13 @@ interval[0] = mean - r;
 interval[1] = mean + r;
 ```
 
+Nous avons fait tourne 120 simulations avec une population de depart de 10 elements et pendant 6 ans (seed de depart: `999999`). Cela nous a permis de calculer un intervalle de confiance suivant:  
+
+Intervalle de confiance à 95%:  
+[562243 ; 656668]
+
+Comme prévu, la méthode n'est pas concluante. Cela vient peut être du fait que la fonction n'est pas une loi normale.
+
 ### Evolution de la population
 
 Nos resultats sont présentés dans un fichier PDF separé.  
