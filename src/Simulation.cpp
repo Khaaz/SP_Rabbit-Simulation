@@ -38,7 +38,7 @@ void Simulation::deleteRabbit(int index) {
  * @brief Run the simulation.
  * 
  */
-void Simulation::run() {
+long Simulation::run() {
     int j, nbReproductions, nbBabies, curPop,age;
     auto *yearStat = new StatsYear(this->rabbits.size());
 
@@ -106,6 +106,7 @@ void Simulation::run() {
     this->stats.endStats(rabbits);
 
     std::cout << "SIMULATION::RUN - end" << std::endl;
+    return this->rabbits.size();
 }
 
 /**

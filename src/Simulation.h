@@ -24,7 +24,7 @@ class Simulation {
 
     public:
     Simulation(int duration, int startingCouple, int seed);
-    void run();
+    long run();
     void displayStats();
     void writeStats(std::ostream& outfile);
 };
