@@ -1,0 +1,64 @@
+Seed: 1007
+startPop: 30
+duration: 7
+
+
+Population: 497800
+h
+
+
+Esperance de vie: 4.70645
+Population finale: 497800
+Nombre de mort total: 182405
+Nombre de naissances total: 680145
+Moyenne du nombre de portees: 6.01324
+Plus vieux lapin de la simulation: 7 ans et 0 mois
+
+ANNEE: 1
+Population: 38
+Nombre de naissances: 0
+Nombre de morts: 22
+% accroissement de la pop: -36.6667
+Multiplicateur de la pop: 0.633333
+
+ANNEE: 2
+Population: 336
+Nombre de naissances: 410
+Nombre de morts: 112
+% accroissement de la pop: 784.211
+Multiplicateur de la pop: 8.8421
+
+ANNEE: 3
+Population: 1612
+Nombre de naissances: 1678
+Nombre de morts: 402
+% accroissement de la pop: 379.762
+Multiplicateur de la pop: 4.79762
+
+ANNEE: 4
+Population: 6623
+Nombre de naissances: 6848
+Nombre de morts: 1837
+% accroissement de la pop: 310.856
+Multiplicateur de la pop: 4.10856
+
+ANNEE: 5
+Population: 28025
+Nombre de naissances: 28913
+Nombre de morts: 7511
+% accroissement de la pop: 323.147
+Multiplicateur de la pop: 4.23147
+
+ANNEE: 6
+Population: 116447
+Nombre de naissances: 121542
+Nombre de morts: 33120
+% accroissement de la pop: 315.511
+Multiplicateur de la pop: 4.15511
+
+ANNEE: 7
+Population: 497800
+Nombre de naissances: 520754
+Nombre de morts: 139401
+% accroissement de la pop: 327.491
+Multiplicateur de la pop: 4.27491
