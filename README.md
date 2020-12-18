@@ -172,5 +172,5 @@ interval[1] = mean + r;
 
 ### Evolution de la population
 
-Nos resultats sont présentes dans un fichier PDF separé.  
+Nos resultats sont présentés dans un fichier PDF separé.  
 Comme attendu, on observe une courbe exponentielle. De plus, on remarque que un aléatoire favorable au debut semble plus favorable qu'un aléatoire favorable vers la fin.
