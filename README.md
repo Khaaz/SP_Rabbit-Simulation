@@ -105,7 +105,7 @@ Les resultats sont enregistre dans des fichiers automatiquement pour les garder.
 
 ### Questionnement sur la veracité des statistiques
 
-On va calculer la moyenne, l'écart type et l'intervalle de confiance a l'aide de la méthode vu dans le TP 3. On peut en revanche se questionner sur la véracité des résultats car la loi de Student fait intervenir le quotient entre une variable suivant une loi normale centrée réduite et la racine carrée d'une variable distribuée suivant la loi du χ2. Or on suppose que notre simulation suit plutôt une loi exponentielle.
+On va calculer la moyenne, l'écart type et l'intervalle de confiance a l'aide de la méthode vu dans le TP 3. On peut en revanche se questionner sur la véracité des résultats car la loi de Student fait intervenir le quotient entre une variable suivant une loi normale centrée réduite et la racine carrée d'une variable distribuée suivant la loi du X2. Or on suppose que notre simulation suit plutôt une loi exponentielle.
 
 ### Discussion sur la reproductibilite
 
