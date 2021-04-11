@@ -3,6 +3,8 @@
 + **Category**: School Project
 + **Status**: Discontinued
 
+Mirror of the [original repo](https://github.com/xerstom/SP_Rabbit-Simulation).
+
 ## **Overview**
 
 This project is a simulation project. The goal is to simulate the growth of a population of rabbit over time given several condition. The results must be stochastic but should allow to predict potential behaviour and infer reflexion and actions from behaviour studied.
